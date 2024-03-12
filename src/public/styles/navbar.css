@@ -1,0 +1,16 @@
+.logo {
+    font-family: "Space Grotesk";
+}
+
+.logo.shadowed::before{
+    content: "MIRU PROJECT";
+    display: block;
+    color: black;
+}
+
+.logo.shadowed::after {
+    content: "MIRU PROJECT";
+    display: block;
+    color: #e63522;
+    transform: rotateX(180deg);
+}

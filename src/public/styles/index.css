@@ -1,0 +1,12 @@
+#loginForm #username, #loginForm #password{
+    border-color: black !important;
+    outline: none !important;
+}
+
+#loginForm #loginButton {
+    color: white;
+    background: black;
+    font-weight: 500;
+    border-radius: 5px;
+    border: none !important;
+}

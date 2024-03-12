@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Miru Project (Beta)
+        include ref
+        link(rel="stylesheet", href="styles/index.css")
+    body
+        include navbar
+        .container-fluid.px-lg-5.px-3.py-4
+            .row
+                .col-12.col-lg-7
+                    p.display-3.fw-bold Trở thành triệu phú theo cách của bạn
+                    .mb-lg-5
+                        p.display-6 Kinh doanh hợp pháp ??
+                        p.display-6 Buôn bán "vật cấm" ??
+                        p.display-6 Đam mê đỏ đen ??
+                    p.mb-0.h2.fst-italic.fw-light.bg-black.text-white.p-2.text-center Hãy lựa chọn con đường của riêng mình
+                .col.px-lg-5
+                    .card.h-100.border-1.border-black.rounded-0.py-4.px-5.text-black
+                        h1.text-center Đăng nhập
+                        p.mb-4.text-center.small.text-secondary Vì Miru Project vẫn đang trong giai đoạn Beta, tài khoản chỉ có thể được cấp mới từ nhà phát triển.
+                        form#loginForm
+                            label.fs-5 Tên đăng nhập
+                            input.w-100.p-2.mb-4#username(type="text" placeholder="")
+                            label.fs-5 Mật khẩu
+                            input.w-100.p-2.mb-4#password(type="password")
+                            button.w-100.py-3.fs-5#loginButton Đăng nhập
+                            .mt-2
+                                a(href="/forgot") Quên mật khẩu...

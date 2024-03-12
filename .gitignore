@@ -1,0 +1,6 @@
+.env
+out/*
+node_modules/
+*.test.*
+**/log
+*.log
