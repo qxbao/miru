@@ -5,3 +5,22 @@
 * {
     font-family: "Space Grotesk";
 }
+
+:root {
+    --bg-color: #eeeeee;
+    --text-color: black;
+    --logo-color1: black;
+    --logo-color2: #e63522;
+}
+
+[theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e8e8e8;
+    --logo-color1: white;
+    --logo-color2: #e63522;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+}

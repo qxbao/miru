@@ -2,13 +2,49 @@ nav.navbar.navbar-expand-lg.py-lg-4.px-lg-5.p-3
     a.h1.my-0.logo.shadowed.fw-bold.text-decoration-none(href = "/")
     button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarExtension" aria-controls="navbarExtension" aria-expanded="false")
         span.navbar-toggler-icon
-    .collapse.navbar-collapse.ps-lg-4#navbarExtension
-        ul.navbar-nav.mr-auto.fs-4
-            li.nav-item
-                a.nav-link(href="#") Trang chủ
-            li.nav-item
-                a.nav-link(href="#") Giai đoạn Beta
-            li.nav-item
-                a.nav-link(href="#") Tài liệu
-            li.nav-item
-                a.nav-link(href="#") Liên hệ
+    .collapse.navbar-collapse.ps-lg-4.user-select-none#navbarExtension
+        if (username)
+            ul.navbar-nav.me-auto.fs-4
+                li.nav-item
+                    a.nav-link(href="#") Bảng điều khiển
+                li.nav-item
+                    a.nav-link(href="#") lối tắt
+                li.nav-item
+                    a.nav-link(href="#") Cài đặt
+                li.nav-item
+                    .dropdown
+                        .nav-link(role="button" data-bs-toggle="dropdown" aria-expanded="false") Theme
+                        ul.dropdown-menu
+                            li
+                                a.dropdown-item(href="#") Sáng
+                            li
+                                a.dropdown-item(href="#") Tối
+            .dropdown
+                button(type="button" data-bs-toggle="dropdown" aria-expanded="false").py-2.px-5.fs-4.fw-bold#userButton="@"+username
+                ul.dropdown-menu
+                    li
+                        a.dropdown-item(href="#") Item 1
+                    li
+                        a.dropdown-item(href="#") Item 2
+                    li
+                        a.dropdown-item(href="#") Item 3
+                    li
+                        a.dropdown-item(href="/logout") Đăng xuất
+        else
+            ul.navbar-nav.mr-auto.fs-4
+                li.nav-item
+                    a.nav-link(href="#") Trang chủ
+                li.nav-item
+                    a.nav-link(href="#") Giai đoạn Beta
+                li.nav-item
+                    a.nav-link(href="#") Tài liệu
+                li.nav-item
+                    a.nav-link(href="#") Liên hệ
+                li.nav-item
+                    .dropdown
+                        .nav-link(role="button" data-bs-toggle="dropdown" aria-expanded="false") Theme
+                        ul.dropdown-menu
+                            li
+                                a.dropdown-item(href="#") Sáng
+                            li
+                                a.dropdown-item(href="#") Tối

@@ -5,12 +5,35 @@
 .logo.shadowed::before{
     content: "MIRU PROJECT";
     display: block;
-    color: black;
+    color: var(--logo-color1);
 }
 
 .logo.shadowed::after {
     content: "MIRU PROJECT";
     display: block;
-    color: #e63522;
+    color: var(--logo-color2);
     transform: rotateX(180deg);
+}
+
+#userButton {
+    background: #e7e7e7;
+    border: 0;
+    border-bottom: 3px solid black;
+}
+
+li.nav-item * {
+    color: var(--text-color) !important;
+}
+
+.dropdown-menu {
+    background: white;
+    border: 2px solid black;
+}
+
+.dropdown-menu li a {
+    color: black !important;
+}
+
+.dropdown-menu li a:hover {
+    background: var(--logo-color2);
 }

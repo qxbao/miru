@@ -6,7 +6,7 @@ html(lang="en")
         title Miru Project (Beta)
         include ref
         link(rel="stylesheet", href="styles/index.css")
-    body
+    body(theme="dark")
         include navbar
         .container-fluid.px-lg-5.px-3.py-4
             .row
@@ -16,16 +16,38 @@ html(lang="en")
                         p.display-6 Kinh doanh hợp pháp ??
                         p.display-6 Buôn bán "vật cấm" ??
                         p.display-6 Đam mê đỏ đen ??
-                    p.mb-0.h2.fst-italic.fw-light.bg-black.text-white.p-2.text-center Hãy lựa chọn con đường của riêng mình
+                    p.mb-0.h2.fst-italic.fw-light.p-2.text-center(style="background: var(--text-color); color: var(--bg-color);") Hãy lựa chọn con đường của riêng mình
                 .col.px-lg-5
-                    .card.h-100.border-1.border-black.rounded-0.py-4.px-5.text-black
+                    .card.h-100.border-0.rounded-2.shadow.py-4.px-lg-5.px-4.text-black
                         h1.text-center Đăng nhập
-                        p.mb-4.text-center.small.text-secondary Vì Miru Project vẫn đang trong giai đoạn Beta, tài khoản chỉ có thể được cấp mới từ nhà phát triển.
+                        p.mb-4.text-center.small.text-secondary Tài khoản truy cập giai đoạn Beta chỉ có thể được cấp mới từ nhà phát triển.
                         form#loginForm
                             label.fs-5 Tên đăng nhập
-                            input.w-100.p-2.mb-4#username(type="text" placeholder="")
+                            input.w-100.p-2.mb-4#username(type="text" placeholder="" autocomplete="on")
                             label.fs-5 Mật khẩu
-                            input.w-100.p-2.mb-4#password(type="password")
+                            input.w-100.p-2.mb-4#password(type="password" autocomplete="on")
                             button.w-100.py-3.fs-5#loginButton Đăng nhập
                             .mt-2
                                 a(href="/forgot") Quên mật khẩu...
+        script.
+            $(() => {
+                console.log("jQuery is ready!");
+                $("#loginForm").on("submit", () => {
+                    const usr = $("#username").val();
+                    const pwd = $("#password").val();
+                    if (usr != "" && pwd != "")
+                        //- Send login request
+                        $.post("/api/user/login", {"username" : usr, "password" : pwd}, (res) => {
+                            //- Response handling
+                            if (res.status) {
+                                window.location.href = "/dashboard";
+                            }
+                            else {
+                                alert(res.ercode);
+                            }
+                        });
+                    else
+                        console.log("Blank")
+                    return false;
+                })
+            })
