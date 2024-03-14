@@ -1,6 +1,6 @@
-#loginForm #username, #loginForm #password{
-    border-color: black !important;
-    outline: none !important;
+#loginCard {
+    background: var(--lighter-bg-color);
+    color: var(--text-color);
 }
 
 #loginForm #loginButton {
@@ -9,4 +9,12 @@
     font-weight: 500;
     border-radius: 5px;
     border: none !important;
+}
+
+#loginForm input {
+    border: 0;
+    outline: none;
+    color: var(--text-color);
+    background: var(--bg-color);
+    border-radius: 4px;
 }

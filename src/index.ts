@@ -2,8 +2,11 @@ import "dotenv/config.js";
 import express from "express";
 import { join } from "path";
 import cors from "cors";
+import { createServer } from 'node:http';
 
 const app = express();
+const server = createServer(app);
+export { server };
 
 // Database connection
 import { pool } from "./postgre/pool"
@@ -26,11 +29,12 @@ import session from "express-session";
 declare module "express-session" {
     export interface SessionData {
         user: { [key: string]: any };
+        count: number;
     }
 }
 import pgConnection from "connect-pg-simple";
 const pgSession = pgConnection(session);
-app.use(session({
+const sessionMiddleware = session({
     store: new pgSession({
         pool: pool
     }),
@@ -41,7 +45,9 @@ app.use(session({
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 30,
     }
-}))
+});
+app.use(sessionMiddleware);
+export { sessionMiddleware }
 
 // Cookie
 import cookieParser from "cookie-parser";
@@ -50,13 +56,18 @@ app.use(cookieParser(process.env.COOKIESECRET))
 // Static resources
 app.use(express.static(join(__dirname, '/public')));
 app.use(express.static(join(__dirname, '/../node_modules/bootstrap/dist')));
+app.use("/lib", express.static(join(__dirname, '/../node_modules/iconoir/css')));
 
 // Routes
 import routes from "./routes/routes";
 app.use(routes)
 
+// SocketIO
+import ioServices from "./socket/io.controller";
+ioServices;
+
 // Port
 const port = process.env.PORT || 8080;
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Listening on port ${port}`);
 })

@@ -4,18 +4,21 @@
 
 * {
     font-family: "Space Grotesk";
+    transition: 0.2s all;
 }
 
-:root {
+:root, [theme="light"]{
     --bg-color: #eeeeee;
-    --text-color: black;
+    --lighter-bg-color: #fdfdfd;
+    --text-color: #121212;
     --logo-color1: black;
     --logo-color2: #e63522;
 }
 
 [theme="dark"] {
     --bg-color: #121212;
-    --text-color: #e8e8e8;
+    --lighter-bg-color: #252525;
+    --text-color: #e5e5e5;
     --logo-color1: white;
     --logo-color2: #e63522;
 }

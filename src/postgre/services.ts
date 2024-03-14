@@ -23,8 +23,8 @@ class Services {
         return res.rows[0].password;
     }
 
-    public async getUserSessionData(username: string): Promise<JSON> {
-        const res = await this.pool.query("SELECT username, access_level FROM users WHERE username = $1", [username]);
+    public async getUserInformation(username: string, fields: Array<string>): Promise<JSON> {
+        const res = await this.pool.query(`SELECT ${fields.join()} FROM users WHERE username = $1`, [username]);
         return res.rows[0];
     }
 }

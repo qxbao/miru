@@ -1,0 +1,8 @@
+.locationCardIC {
+    transform: translateX(-.4rem);
+}
+
+#statusCard > .card-body {
+    background: var(--lighter-bg-color);
+    color: var(--text-color)
+}

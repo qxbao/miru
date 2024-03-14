@@ -1,50 +1,97 @@
+mixin themeToggle
+    .dropdown
+        .nav-link.d-flex.align-items-center(role="button" data-bs-toggle="dropdown" aria-expanded="false")
+            i.iconoir-brightness.me-1
+            | Giao diện
+        ul.dropdown-menu#themeDropdown
+            li
+                button.dropdown-item.d-flex.align-items-center(value="light")
+                    i.iconoir-sun-light.me-1
+                    | Sáng
+            li
+                button.dropdown-item.d-flex.align-items-center(value="dark")
+                    i.iconoir-half-moon.me-1
+                    | Tối
+
 nav.navbar.navbar-expand-lg.py-lg-4.px-lg-5.p-3
-    a.h1.my-0.logo.shadowed.fw-bold.text-decoration-none(href = "/")
-    button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarExtension" aria-controls="navbarExtension" aria-expanded="false")
-        span.navbar-toggler-icon
-    .collapse.navbar-collapse.ps-lg-4.user-select-none#navbarExtension
+    a.h2.my-0.logo.shadowed.fw-bold.text-decoration-none(href = "/")
+    button(type="button" data-bs-toggle="collapse" data-bs-target="#navbarExtension" aria-controls="navbarExtension" aria-expanded="false").navbar-toggler.py-2.px-3.fs-3.rounded-2#toggleButton
+        .d-flex
+            i.iconoir-menu
+    .collapse.navbar-collapse.ps-lg-4.py-2.user-select-none#navbarExtension
         if (username)
-            ul.navbar-nav.me-auto.fs-4
+            ul.navbar-nav.me-auto.fs-5.mb-4.mb-lg-auto
                 li.nav-item
-                    a.nav-link(href="#") Bảng điều khiển
+                    a.nav-link.d-flex.align-items-center(href="#")
+                        i.iconoir-dashboard.me-1
+                        | Bảng điều khiển
                 li.nav-item
-                    a.nav-link(href="#") lối tắt
+                    a.nav-link.d-flex.align-items-center(href="#")
+                        i.iconoir-apple-shortcuts.me-1
+                        | Lối tắt
                 li.nav-item
-                    a.nav-link(href="#") Cài đặt
-                li.nav-item
-                    .dropdown
-                        .nav-link(role="button" data-bs-toggle="dropdown" aria-expanded="false") Theme
-                        ul.dropdown-menu
-                            li
-                                a.dropdown-item(href="#") Sáng
-                            li
-                                a.dropdown-item(href="#") Tối
-            .dropdown
-                button(type="button" data-bs-toggle="dropdown" aria-expanded="false").py-2.px-5.fs-4.fw-bold#userButton="@"+username
-                ul.dropdown-menu
+                    +themeToggle
+            .dropdown.justify-content-center.d-flex
+                button(type="button" data-bs-toggle="dropdown" aria-expanded="false").w-100.d-flex.align-items-center.justify-content-center.py-2.px-5.fs-4.fw-normal#userButton
+                    i.iconoir-user.me-1
+                ul.dropdown-menu.dropdown-menu-end.w-100
                     li
-                        a.dropdown-item(href="#") Item 1
+                        .dropdown-header.py-2.d-flex.align-items-center.justify-content-center.fw-bold(style="background: var(--text-color); color: var(--bg-color)")
+                            case access_level
+                                when 0
+                                    i.iconoir-star.me-1
+                                    span=username
+                                    i.iconoir-star.ms-1
+                                when 1
+                                    i.iconoir-three-stars.me-1
+                                    span=username
+                                    i.iconoir-three-stars.ms-1
+                                when 2
+                                    i.iconoir-tools.me-1
+                                    span=username
+                                    i.iconoir-tools.ms-1
+                                when 3
+                                    i.iconoir-crown.me-1
+                                    span=username
+                                    i.iconoir-crown.ms-1
+                                default
+                                    span=username
+
                     li
-                        a.dropdown-item(href="#") Item 2
+                        a.dropdown-item.d-flex.align-items-center(href="/user/"+username)
+                            i.iconoir-profile-circle.me-1
+                            | Trang cá nhân
                     li
-                        a.dropdown-item(href="#") Item 3
+                        a.dropdown-item.d-flex.align-items-center(href="/messages")
+                            i.iconoir-message-text.me-1
+                            | Tin nhắn
                     li
-                        a.dropdown-item(href="/logout") Đăng xuất
+                        a.dropdown-item.d-flex.align-items-center(href="/settings")
+                            i.iconoir-settings.me-1
+                            | Cài đặt
+                    li
+                        a.dropdown-item.d-flex.align-items-center(href="/logout")
+                            i.iconoir-log-out.me-1
+                            | Đăng xuất
         else
-            ul.navbar-nav.mr-auto.fs-4
+            ul.navbar-nav.mr-auto.fs-5.mb-auto
                 li.nav-item
-                    a.nav-link(href="#") Trang chủ
+                    a.nav-link.d-flex.align-items-center(href="#")
+                        i.iconoir-home.me-1
+                        | Trang chủ
                 li.nav-item
-                    a.nav-link(href="#") Giai đoạn Beta
+                    a.nav-link.d-flex.align-items-center(href="#")
+                        i.iconoir-lock.me-1
+                        | Giai đoạn Beta
                 li.nav-item
-                    a.nav-link(href="#") Tài liệu
+                    a.nav-link.d-flex.align-items-center(href="#")
+                        i.iconoir-page.me-1
+                        | Tài liệu
                 li.nav-item
-                    a.nav-link(href="#") Liên hệ
-                li.nav-item
-                    .dropdown
-                        .nav-link(role="button" data-bs-toggle="dropdown" aria-expanded="false") Theme
-                        ul.dropdown-menu
-                            li
-                                a.dropdown-item(href="#") Sáng
-                            li
-                                a.dropdown-item(href="#") Tối
+                    +themeToggle
+script.
+    $("#themeDropdown li button").click(function(){
+        const theme = $(this).val();
+        $.cookie("theme", theme);
+        $("body").attr("theme", theme);
+    })

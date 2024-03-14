@@ -5,49 +5,30 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Miru Project (Beta)
         include ref
+        script(src="scripts/index.js") 
         link(rel="stylesheet", href="styles/index.css")
     body(theme="dark")
         include navbar
-        .container-fluid.px-lg-5.px-3.py-4
+        .container-fluid.px-lg-5.px-3
             .row
-                .col-12.col-lg-7
-                    p.display-3.fw-bold Trở thành triệu phú theo cách của bạn
-                    .mb-lg-5
+                .col-12.col-lg-7.py-4.py-lg-5
+                    .d-flex
+                        .display-3.fw-bold.mb-lg-4.d-none.d-lg-block Trở thành triệu phú theo cách của bạn
+                        .display-4.fw-bold.mb-lg-4.d-lg-none.d-block.text-center Trở thành triệu phú theo cách của bạn
+                    .d-none.d-lg-block
                         p.display-6 Kinh doanh hợp pháp ??
                         p.display-6 Buôn bán "vật cấm" ??
-                        p.display-6 Đam mê đỏ đen ??
-                    p.mb-0.h2.fst-italic.fw-light.p-2.text-center(style="background: var(--text-color); color: var(--bg-color);") Hãy lựa chọn con đường của riêng mình
-                .col.px-lg-5
-                    .card.h-100.border-0.rounded-2.shadow.py-4.px-lg-5.px-4.text-black
+                        p.mb-5.display-6 Đam mê đỏ đen ??
+                        p.mb-0.h2.fst-italic.fw-light.p-2.text-center(style="background: var(--text-color); color: var(--bg-color);") Hãy lựa chọn con đường của riêng mình
+                .col.px-lg-5.py-3
+                    .card.h-100.border-0.rounded-2.shadow.py-5.px-lg-5.px-4#loginCard
                         h1.text-center Đăng nhập
                         p.mb-4.text-center.small.text-secondary Tài khoản truy cập giai đoạn Beta chỉ có thể được cấp mới từ nhà phát triển.
                         form#loginForm
-                            label.fs-5 Tên đăng nhập
-                            input.w-100.p-2.mb-4#username(type="text" placeholder="" autocomplete="on")
-                            label.fs-5 Mật khẩu
-                            input.w-100.p-2.mb-4#password(type="password" autocomplete="on")
+                            label.fs-5.mb-2 Tên người dùng
+                            input.w-100.py-2.px-3.mb-4#username(type="text" placeholder="Nhập tên người dùng" autocomplete="on")
+                            label.fs-5.mb-2 Mật khẩu
+                            input.w-100.py-2.px-3.mb-5#password(type="password" placeholder="Nhập mật khẩu" autocomplete="on")
                             button.w-100.py-3.fs-5#loginButton Đăng nhập
                             .mt-2
                                 a(href="/forgot") Quên mật khẩu...
-        script.
-            $(() => {
-                console.log("jQuery is ready!");
-                $("#loginForm").on("submit", () => {
-                    const usr = $("#username").val();
-                    const pwd = $("#password").val();
-                    if (usr != "" && pwd != "")
-                        //- Send login request
-                        $.post("/api/user/login", {"username" : usr, "password" : pwd}, (res) => {
-                            //- Response handling
-                            if (res.status) {
-                                window.location.href = "/dashboard";
-                            }
-                            else {
-                                alert(res.ercode);
-                            }
-                        });
-                    else
-                        console.log("Blank")
-                    return false;
-                })
-            })

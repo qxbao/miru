@@ -1,39 +1,70 @@
-.logo {
+nav {
+    background: var(--lighter-bg-color);
+}
+
+nav.navbar .logo {
     font-family: "Space Grotesk";
 }
 
-.logo.shadowed::before{
+nav.navbar .logo.shadowed::before{
     content: "MIRU PROJECT";
     display: block;
     color: var(--logo-color1);
 }
 
-.logo.shadowed::after {
+nav.navbar .logo.shadowed::after {
     content: "MIRU PROJECT";
     display: block;
     color: var(--logo-color2);
     transform: rotateX(180deg);
 }
 
-#userButton {
-    background: #e7e7e7;
-    border: 0;
-    border-bottom: 3px solid black;
+nav.navbar #userButton {
+    background: none;
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
+    border-radius: 3px;
 }
 
-li.nav-item * {
+nav.navbar li.nav-item > * > *, nav.navbar li.nav-item > * {
     color: var(--text-color) !important;
 }
 
-.dropdown-menu {
-    background: white;
-    border: 2px solid black;
+nav.navbar .dropdown > ul {
+    background: var(--lighter-bg-color);
+    border: 2px solid var(--text-color);
+    overflow: hidden;
+    padding: 0;
 }
 
-.dropdown-menu li a {
-    color: black !important;
+nav.navbar .dropdown > ul > li > *:not(div) {
+    padding-top: .6rem;
+    padding-bottom: .6rem;
 }
 
-.dropdown-menu li a:hover {
+nav.navbar .dropdown > ul > li > *:not(div):hover {
+    background: var(--bg-color);
+}
+
+nav.navbar #themeDropdown li button:hover {
     background: var(--logo-color2);
+}
+
+nav.navbar #themeDropdown li button[value="light"]:hover {
+    background: #eef43f;
+    color: black;
+}
+
+nav.navbar #themeDropdown li button[value="dark"]:hover {
+    background: #490278;
+    color: white !important;
+}
+
+nav.navbar .dropdown li > * {
+    color: var(--text-color);
+}
+
+nav.navbar #toggleButton {
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
 }

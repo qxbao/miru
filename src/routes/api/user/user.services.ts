@@ -15,7 +15,7 @@ router.post("/login", (req: Request, res: Response, next: NextFunction) => {
     if (userPassword == null) return res.json({ status: false, ercode: 0 });
     const match = await bcrypt.compare(password, userPassword);
     if (match) {
-        req.session.user = await PGServices.getUserSessionData(username);
+        req.session.user = {"username" : username};
         return res.json({ status: true });
     }
     else {

@@ -3,8 +3,70 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Miru Project (Beta)
+        title Bảng điều khiển | Miru Project
         include ref
-        link(rel="stylesheet", href="styles/index.css")
+        link(rel="stylesheet", href="styles/dashboard.css")
     body
         include navbar
+        .container
+            .row
+                .col-12.col-lg-8.py-5
+                    .display-4.fw-bold.mb-5="Dịch vụ cơ bản".toUpperCase()
+                    #locationCards.mb-5
+                        -
+                            var locations = [{
+                                name : "Bank"
+                            }]
+                        mixin locationCard(imgSrc, name, desc, bgColor, sdColor)
+                            .card.border-0.h-100.rounded-4
+                                .card-body.rounded-4.py-2.py-lg-3.px-2.shadow.h-100
+                                    .row.h-100
+                                        .col-4.px-0.d-flex.align-items-center
+                                            .rounded-circle.overflow-hidden.locationCardIC(style=`box-shadow: 0 0rem 1rem ${sdColor}`)
+                                                img(src=imgSrc style=`background: ${bgColor}`).img-fluid
+                                        .col.py-2.d-flex.flex-column.pe-4
+                                            p.mb-1.fw-bold=name.toUpperCase()
+                                            .small.mb-2=desc
+                                            button(style=`background: ${bgColor}`).rounded-5.mt-auto.py-2.border-0.fw-bold.text-white Chọn
+                        .row
+                            .col-12.col-md-6.mb-3
+                                +locationCard("/images/bank-card.png", "Ngân hàng", "Tạo giao dịch, vay vốn, gửi tiết kiệm và các hoạt động liên quan", "linear-gradient(to right, #18871f, #338b93", "#18871f")
+                            .col-12.col-md-6.mb-3
+                                +locationCard("/images/jobcenter-card.jpg", "Trung tâm việc làm", "Hãy gặp mặt các nhà tuyển dụng và chọn cho mình một công việc phù hợp", "linear-gradient( 111.4deg,  rgba(7,7,9,1) 6.5%, rgba(27,24,113,1) 93.2% )", "rgba(27,24,113,1)")
+                            .col-12.col-md-6.mb-3
+                                +locationCard("/images/casino-card.png", "Casino", "Cùng thử vận may với khả năng thu lợi nhuận gấp hàng nghìn lần", "radial-gradient( circle farthest-corner at 17.1% 22.8%,  rgba(226,24,24,1) 0%, rgba(160,6,6,1) 90% );", "rgba(226,24,24,1)")
+                            .col-12.col-md-6.mb-3
+                                +locationCard("/images/blackmarket-card.jpg", "Chợ đen", "Mua, bán tất cả vật phẩm có thể tại đây. Không ai hỏi tới xuất xứ của chúng cả.", "linear-gradient(to right,  rgba(0,0,0,1) 9.2%, rgba(127,16,16,1) 103.9% )", "black")
+                    .display-4.fw-bold="Dịch vụ V.I.P".toUpperCase()
+                .col.col-lg-4.px-4
+                    .sticky-top.pt-4.z-1
+                        .card.border-0#statusCard
+                            .card-body.p-4
+                                .h2.text-center.mb-4.fw-bold TÀI KHOẢN
+                                .mb-0
+                                    b Tên: 
+                                    span=name+` (${username})`
+                                .mb-3.fw-bold="Quyền truy cập cấp độ "+access_level
+                                .mb-3
+                                    span.fw-bold Số dư: 
+                                    span 15.000.000.000,08
+                                .mb-3
+                                    b Vật phẩm sở hữu:
+                                    span.ms-1 129
+                                    .ms-1
+                                        ul
+                                            li
+                                                b Thường:
+                                                span.ms-1 100
+                                            li
+                                                b Hiếm:
+                                                span.ms-1 20
+                                            li
+                                                b Cực hiếm:
+                                                span.ms-1 9
+                                .mb-3
+                                    b Bất động sản sở hữu: 
+                                    span 0
+                                .mb-3
+                                    b Dư nợ ngân hàng: 
+                                    span 0
