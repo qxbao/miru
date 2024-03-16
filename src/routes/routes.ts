@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, Router } from "express";
 import indexController from "./index.controller"
-import dashboardController from "./dashboard/dashboard.controller"
+import homeController from "./dashboard/home.controller"
 import apiRoutes from "./api/routes"
 
 const routes = Router()
@@ -10,6 +10,6 @@ const routes = Router()
     })
     .use(indexController)
     .use("/api", apiRoutes)
-    .use("/dashboard", dashboardController);
+    .use("/home", homeController);
 
 export default Router().use("/", routes);

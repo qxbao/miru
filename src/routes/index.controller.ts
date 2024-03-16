@@ -4,7 +4,7 @@ import Validator from "../utils/validator"
 const router = Router();
 
 router.get("/", (req: Request, res: Response, next: NextFunction) => {
-    if (Validator.loginStatus(req)) return res.redirect("/dashboard");
+    if (Validator.loginStatus(req)) return res.redirect("/home");
     next();
 }, (req: Request, res: Response) => {
     res.render("index.pug");

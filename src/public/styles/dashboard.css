@@ -2,7 +2,17 @@
     transform: translateX(-.4rem);
 }
 
+#statusCard {
+    border: 3px solid var(--text-color);
+    overflow: hidden;
+}
+
 #statusCard > .card-body {
     background: var(--lighter-bg-color);
-    color: var(--text-color)
+    color: var(--text-color);
+}
+
+#statusCard .title {
+    background: var(--text-color);
+    color: var(--bg-color);
 }

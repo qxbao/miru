@@ -2,7 +2,8 @@ import { Request } from "express";
 
 class Validator {
     static loginStatus(req : Request) : Boolean {
-        return req.session.user ? true : false;
+        return "user" in req.session ? true : false;
+        
     }
 }
 

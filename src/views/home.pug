@@ -3,9 +3,10 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Bảng điều khiển | Miru Project
+        title Trang chủ | Miru Project
         include ref
         link(rel="stylesheet", href="styles/dashboard.css")
+        script(src="/scripts/dashboard.js") 
     body
         include navbar
         .container
@@ -13,10 +14,6 @@ html(lang="en")
                 .col-12.col-lg-8.py-5
                     .display-4.fw-bold.mb-5="Dịch vụ cơ bản".toUpperCase()
                     #locationCards.mb-5
-                        -
-                            var locations = [{
-                                name : "Bank"
-                            }]
                         mixin locationCard(imgSrc, name, desc, bgColor, sdColor)
                             .card.border-0.h-100.rounded-4
                                 .card-body.rounded-4.py-2.py-lg-3.px-2.shadow.h-100
@@ -40,33 +37,34 @@ html(lang="en")
                     .display-4.fw-bold="Dịch vụ V.I.P".toUpperCase()
                 .col.col-lg-4.px-4
                     .sticky-top.pt-4.z-1
-                        .card.border-0#statusCard
-                            .card-body.p-4
-                                .h2.text-center.mb-4.fw-bold TÀI KHOẢN
-                                .mb-0
-                                    b Tên: 
-                                    span=name+` (${username})`
-                                .mb-3.fw-bold="Quyền truy cập cấp độ "+access_level
-                                .mb-3
-                                    span.fw-bold Số dư: 
-                                    span 15.000.000.000,08
-                                .mb-3
-                                    b Vật phẩm sở hữu:
-                                    span.ms-1 129
-                                    .ms-1
-                                        ul
-                                            li
-                                                b Thường:
-                                                span.ms-1 100
-                                            li
-                                                b Hiếm:
-                                                span.ms-1 20
-                                            li
-                                                b Cực hiếm:
-                                                span.ms-1 9
-                                .mb-3
-                                    b Bất động sản sở hữu: 
-                                    span 0
-                                .mb-3
-                                    b Dư nợ ngân hàng: 
-                                    span 0
+                        .card.rounded-1#statusCard
+                            .card-body.px-0.pt-0
+                                .title.h3.text-center.py-3.mb-4.fw-bold THÔNG TIN TÀI KHOẢN
+                                .px-4
+                                    .mb-0
+                                        b Tên: 
+                                        span=name+` (${username})`
+                                    .mb-3.fw-bold="Quyền truy cập cấp độ "+access_level
+                                    .mb-3
+                                        span.fw-bold Số dư: 
+                                        span#mirucaDisplay undefined
+                                    .mb-3
+                                        b Vật phẩm sở hữu:
+                                        span.ms-1#itemDisplay undefined
+                                        .ms-1
+                                            ul
+                                                li
+                                                    b Thường:
+                                                    span.ms-1 undefined
+                                                li
+                                                    b Hiếm:
+                                                    span.ms-1 undefined
+                                                li
+                                                    b Cực hiếm:
+                                                    span.ms-1 undefined
+                                    .mb-3
+                                        b Khoản đầu tư: 
+                                        span#investmentDisplay undefined
+                                    .mb-3
+                                        b Dư nợ ngân hàng: 
+                                        span#loanDisplay undefined

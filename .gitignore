@@ -4,3 +4,6 @@ node_modules/
 *.test.*
 **/log
 *.log
+*.png
+*.jpg
+*.jpeg

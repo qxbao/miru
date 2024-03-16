@@ -23,8 +23,13 @@ class Services {
         return res.rows[0].password;
     }
 
-    public async getUserInformation(username: string, fields: Array<string>): Promise<JSON> {
+    public async getUserInformation(username: string, fields: Array<string>): Promise<Object> {
         const res = await this.pool.query(`SELECT ${fields.join()} FROM users WHERE username = $1`, [username]);
+        return res.rows[0];
+    }
+
+    public async getUserProperty(username: string, fields: Array<string>): Promise<Object> {
+        const res = await this.pool.query(`SELECT ${fields.join()} FROM property WHERE username = $1`, [username]);
         return res.rows[0];
     }
 }
