@@ -1,9 +1,9 @@
-#loginCard {
+#signinCard {
     background: var(--lighter-bg-color);
     color: var(--text-color);
 }
 
-#loginForm #loginButton {
+#signinForm #signinButton {
     color: white;
     background: black;
     font-weight: 500;
@@ -11,10 +11,68 @@
     border: none !important;
 }
 
-#loginForm input {
+#signinForm input {
     border: 0;
     outline: none;
     color: var(--text-color);
     background: var(--bg-color);
     border-radius: 4px;
+}
+
+#signupModalShowButton {
+    border: 0;
+    background: var(--text-color);
+    box-shadow: 0 .8rem #6e6e6e;
+    color: var(--bg-color);
+    border-radius: .5rem 4rem .5rem 1rem;
+}
+
+#signupModalShowButton:hover {
+    opacity: .95;
+}
+
+#signupModalShowButton:active {
+    box-shadow: none!important;
+    transform: translateY(.8rem);
+}
+
+#signupModal .modal-content {
+    color: black;
+    border-top: .5rem solid #774dd1!important;
+    border-radius: 6px;
+}
+
+#signupModal input {
+    background: #efefef;
+    box-shadow: 0 0 5px inset #c4c4c4;
+    border: none;
+    outline: none !important;
+    padding: .5rem;
+    border-radius: .3rem;
+    color: #6a6a6a;
+    font-weight: 500;
+}
+
+#signupModal input:focus {
+    box-shadow: none !important;
+}
+
+#signupModal label {
+    color: grey;
+    font-weight: 500;
+    margin-bottom: .2rem;
+}
+
+#signupModal #completeSignupButton {
+    font-weight: 500;
+    color: white;
+    background:#774dd1;
+}
+
+#signupModal #completeSignupButton:disabled {
+    background: #907db9;
+}
+
+#signupModal a {
+    color: #774dd1;
 }

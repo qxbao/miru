@@ -1,14 +1,9 @@
-import { Router, Request, Response, NextFunction } from "express";
-import PGServices from "./../../../postgre/services";
-import Validator from "./../../../utils/validator";
+import { Request, Response } from "express";
 import bcrypt from "bcrypt";
+import PGServices from "../../../postgre/services";
+import Validator from "../../../utils/validator";
 
-const router = Router();
-
-router.post("/login", (req: Request, res: Response, next: NextFunction) => {
-    if (Validator.loginStatus(req)) return res.json({ status: false, ercode: -1});
-    next();
-}, async (req: Request, res: Response) => {
+const signinProcess = async (req: Request, res: Response) => {
     const username = req.body.username;
     const password = req.body.password;
     const userPassword = await PGServices.checkUserExistence(username);
@@ -21,6 +16,22 @@ router.post("/login", (req: Request, res: Response, next: NextFunction) => {
     else {
         return res.json({status: false, ercode: 1})
     }
-})
+}
 
-export default router;
+const signupProcess = async (req: Request, res: Response) => {
+    const data = req.body;
+    if (Validator.signupData(data.username, data.email, data.name, data.password)) {
+        const usernameExistence = await PGServices.checkUserExistence(data.username);
+        // Existed username
+        if (usernameExistence) return res.send({status : false, code: 1});
+        const signupStatus = await PGServices.createUser(data.username, await bcrypt.hash(data.password, 12), data.email, data.name);
+        const propertyStatus = await PGServices.createProperty(data.username);
+        // Database error occured
+        if (!signupStatus || !propertyStatus) return res.send({status : false, code: 2});
+        return res.send({status : true});
+    }
+    // Invalid data submitted
+    return res.send({status : false, code: 3});
+}
+
+export {signinProcess, signupProcess};

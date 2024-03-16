@@ -19,7 +19,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on("req dashboard info", async() =>  {
-        if(!Validator.loginStatus(req)) return false;
+        if(!Validator.signinStatus(req)) return false;
         const info = await ioServices.getDashboardInfo(req.session.user!);
         socket.emit("dashboard info", info);
     })

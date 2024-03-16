@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, Router } from "express";
-import indexController from "./index.controller"
-import homeController from "./dashboard/home.controller"
-import apiRoutes from "./api/routes"
+import indexController from "./index.controller";
+import homeController from "./home/home.controller";
+import apiRoutes from "./api/routes";
 
 const routes = Router()
     .use((req: Request, res: Response, next: NextFunction) => {

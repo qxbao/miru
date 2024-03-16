@@ -1,5 +1,6 @@
 import { pool } from "./pool";
 import { Pool } from "pg";
+import { StartMoney } from "../../constants/money"; 
 
 class Services {
     private pool: Pool;
@@ -11,6 +12,15 @@ class Services {
     public async createUser(username: string, password: string, email: string, name: string): Promise<Boolean> {
         try {
             await this.pool.query("INSERT INTO users(username, password, email, name) VALUES($1, $2, $3, $4)", [username, password, email, name]);
+        } catch (e: unknown) {
+            return false;
+        }
+        return true;
+    }
+
+    public async createProperty(username: string) {
+        try {
+            await this.pool.query("INSERT INTO property(username, miruca) VALUES($1, $2)", [username, StartMoney]);
         } catch (e: unknown) {
             return false;
         }

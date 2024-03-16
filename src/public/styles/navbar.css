@@ -2,23 +2,6 @@ nav {
     background: var(--lighter-bg-color);
 }
 
-nav.navbar .logo {
-    font-family: "Space Grotesk";
-}
-
-nav.navbar .logo.shadowed::before{
-    content: "MIRU PROJECT";
-    display: block;
-    color: var(--logo-color1);
-}
-
-nav.navbar .logo.shadowed::after {
-    content: "MIRU PROJECT";
-    display: block;
-    color: var(--logo-color2);
-    transform: rotateX(180deg);
-}
-
 nav.navbar #userButton {
     background: none;
     color: var(--text-color);

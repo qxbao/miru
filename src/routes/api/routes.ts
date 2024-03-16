@@ -1,5 +1,5 @@
 import { Router,  Request, Response, request } from "express";
-import userServices from "./user/user.services"
+import userServices from "./user/user.controller"
 
 const api = Router().use("/user", userServices);
 

@@ -27,3 +27,20 @@ body {
     background: var(--bg-color);
     color: var(--text-color);
 }
+
+.logo {
+    font-family: "Space Grotesk";
+}
+
+.logo.shadowed::before{
+    content: "MIRU PROJECT";
+    display: block;
+    color: var(--logo-color1);
+}
+
+.logo.shadowed::after {
+    content: "MIRU PROJECT";
+    display: block;
+    color: var(--logo-color2);
+    transform: rotateX(180deg);
+}
