@@ -1,6 +1,6 @@
 import { pool } from "./pool";
 import { Pool } from "pg";
-import { StartMoney } from "../../constants/money"; 
+import { StartMoney } from "../constants/money"; 
 
 class Services {
     private pool: Pool;
